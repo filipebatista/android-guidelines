@@ -316,16 +316,18 @@ Example:
 ```java
 public class MainActivity extends Activity {
 
-	private String mTitle;
-    private TextView mTextViewTitle;
+    private static final String TAG = MainActivity.class.getSimpleName();
 
-    public void setTitle(String title) {
-    	mTitle = title;
-    }
+    private String mTitle;
+    private TextView mTextViewTitle;
 
     @Override
     public void onCreate() {
         ...
+    }
+
+    public void setTitle(String title) {
+    	mTitle = title;
     }
 
     private void setUpView() {
@@ -407,7 +409,7 @@ static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 
 ### 2.2.14 Arguments in Fragments and Activities
 
-When data is passed into an `Activity `or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
+When data is passed into an `Activity` or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
 
 When an `Activity` or `Fragment` expects arguments, it should provide a `public static` method that facilitates the creation of the relevant `Intent` or `Fragment`.
 
@@ -425,7 +427,7 @@ For Fragments it is named `newInstance()` and handles the creation of the Fragme
 
 ```java
 public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment;
+	UserFragment fragment = new UserFragment();
 	Bundle args = new Bundle();
 	args.putParcelable(ARGUMENT_USER, user);
 	fragment.setArguments(args)
@@ -601,7 +603,7 @@ String names start with a prefix that identifies the section they belong to. For
 
 #### 2.3.2.3 Styles and Themes
 
-Unless the rest of resources, style names are written in __UpperCamelCase__.
+Unlike the rest of resources, style names are written in __UpperCamelCase__.
 
 ### 2.3.3 Attributes ordering
 
